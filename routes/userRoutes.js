@@ -15,10 +15,10 @@ const router = express.Router();
 
 router.get("/", authenticateUser, authorizePermissions('admin'), getAllUser);
 
-router.get("/showCurrentUser", showCurrentUser);
-router.patch("/updateUser", updateUser);
-router.patch("/updateUserPassword", updateUserPassword);
+router.get("/showMe",authenticateUser, showCurrentUser);
+router.patch("/updateUser",authenticateUser, updateUser);
+router.patch("/updateUserPassword",authenticateUser, updateUserPassword);
 
-router.get("/:id", getSingleUser);
+router.get("/:id",authenticateUser, getSingleUser);
 
 module.exports = router;
