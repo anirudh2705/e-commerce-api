@@ -22,7 +22,7 @@ const rateLimitter = require("express-rate-limit");
 const helmet = require("helmet");
 const xss = require("xss-clean");
 const cors = require("cors");
-const mongooSanitize = require("express-mongoo-sanitize");
+const mongoSanitize = require("express-mongo-sanitize");
 
 const app = express();
 
@@ -36,7 +36,7 @@ app.use(
 app.use(helmet());
 app.use(xss());
 app.use(cors());
-app.use(mongooSanitize());
+app.use(mongoSanitize());
 
 app.use(morgan("tiny"));
 app.use(express.json());
