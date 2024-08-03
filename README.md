@@ -38,7 +38,7 @@ This api is build using Node.js, Express, MongoDb.
 
 2. Open your browser and navigate to:
     ```
-    http://localhost:3000
+    http://localhost:5000
     ```
 
 ### Explanation of Files
