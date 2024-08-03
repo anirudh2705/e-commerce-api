@@ -18,7 +18,25 @@ const morgan = require("morgan");
 const cookieParser = require("cookie-parser");
 const fileUpload = require("express-fileupload");
 
+const rateLimitter = require("express-rate-limit");
+const helmet = require("helmet");
+const xss = require("xss-clean");
+const cors = require("cors");
+const mongooSanitize = require("express-mongoo-sanitize");
+
 const app = express();
+
+app.set("trust-proxy", 1);
+app.use(
+  rateLimitter({
+    windowMs: 15 * 60 * 1000,
+    max: 60,
+  })
+);
+app.use(helmet());
+app.use(xss());
+app.use(cors());
+app.use(mongooSanitize());
 
 app.use(morgan("tiny"));
 app.use(express.json());
@@ -26,12 +44,6 @@ app.use(cookieParser(process.env.JWT_SECRET));
 
 app.use(express.static("./public"));
 app.use(fileUpload());
-
-app.get("/api/v1/test", (req, res) => {
-  console.log(req.cookies);
-  console.log(req.signedCookies);
-  res.send("ecomapi");
-});
 
 app.use("/api/v1/auth", authRouter);
 app.use("/api/v1/users", userRouter);
