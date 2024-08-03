@@ -1,6 +1,6 @@
 # e-commerce-API
 
-live app:- https://e-commerce-api-863h.onrender.com/
+API link:- https://e-commerce-api-863h.onrender.com/
 
 This api is build using Node.js, Express, MongoDb. 
 
